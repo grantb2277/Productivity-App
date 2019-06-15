@@ -54,14 +54,30 @@
 		A226398C22B545DF00EFF67D /* Productivity App */ = {
 			isa = PBXGroup;
 			children = (
-				A226398D22B545DF00EFF67D /* AppDelegate.swift */,
-				A226398F22B545DF00EFF67D /* ViewController.swift */,
-				A226399122B545DF00EFF67D /* Main.storyboard */,
+				A226399F22B545F600EFF67D /* Controller */,
+				A22639A022B5460700EFF67D /* VIew */,
 				A226399422B545DF00EFF67D /* Assets.xcassets */,
-				A226399622B545DF00EFF67D /* LaunchScreen.storyboard */,
 				A226399922B545DF00EFF67D /* Info.plist */,
 			);
 			path = "Productivity App";
+			sourceTree = "<group>";
+		};
+		A226399F22B545F600EFF67D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A226398D22B545DF00EFF67D /* AppDelegate.swift */,
+				A226398F22B545DF00EFF67D /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A22639A022B5460700EFF67D /* VIew */ = {
+			isa = PBXGroup;
+			children = (
+				A226399622B545DF00EFF67D /* LaunchScreen.storyboard */,
+				A226399122B545DF00EFF67D /* Main.storyboard */,
+			);
+			path = VIew;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
