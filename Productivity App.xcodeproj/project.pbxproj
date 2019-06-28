@@ -3,18 +3,25 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32C296DFA4BE5EAB526BB747 /* Pods_Productivity_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5829B5130E3A13DF6CFC7FF6 /* Pods_Productivity_App.framework */; };
 		A226398E22B545DF00EFF67D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A226398D22B545DF00EFF67D /* AppDelegate.swift */; };
 		A226399022B545DF00EFF67D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A226398F22B545DF00EFF67D /* ViewController.swift */; };
 		A226399322B545DF00EFF67D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A226399122B545DF00EFF67D /* Main.storyboard */; };
 		A226399522B545DF00EFF67D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A226399422B545DF00EFF67D /* Assets.xcassets */; };
 		A226399822B545DF00EFF67D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A226399622B545DF00EFF67D /* LaunchScreen.storyboard */; };
+		A28D7A9522C5C241006E76CD /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28D7A9422C5C241006E76CD /* RegisterViewController.swift */; };
+		A28D7A9722C5C24F006E76CD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28D7A9622C5C24F006E76CD /* LoginViewController.swift */; };
+		A28D7A9D22C66530006E76CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A28D7A9C22C66530006E76CD /* GoogleService-Info.plist */; };
+		A28D7A9F22C66B5B006E76CD /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28D7A9E22C66B5B006E76CD /* ToDoListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1DF29746C9F060907D832914 /* Pods-Productivity App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Productivity App.debug.xcconfig"; path = "Target Support Files/Pods-Productivity App/Pods-Productivity App.debug.xcconfig"; sourceTree = "<group>"; };
+		5829B5130E3A13DF6CFC7FF6 /* Pods_Productivity_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Productivity_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A226398A22B545DF00EFF67D /* Productivity App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Productivity App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A226398D22B545DF00EFF67D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A226398F22B545DF00EFF67D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +29,11 @@
 		A226399422B545DF00EFF67D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A226399722B545DF00EFF67D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A226399922B545DF00EFF67D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A28D7A9422C5C241006E76CD /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		A28D7A9622C5C24F006E76CD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A28D7A9C22C66530006E76CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A28D7A9E22C66B5B006E76CD /* ToDoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewController.swift; sourceTree = "<group>"; };
+		B1CE6EDC0EABEAC98588AD9A /* Pods-Productivity App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Productivity App.release.xcconfig"; path = "Target Support Files/Pods-Productivity App/Pods-Productivity App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +41,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32C296DFA4BE5EAB526BB747 /* Pods_Productivity_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18CDF7FDB4551BC6995A82F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5829B5130E3A13DF6CFC7FF6 /* Pods_Productivity_App.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7AF27C66401A9DF1EAC2D842 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1DF29746C9F060907D832914 /* Pods-Productivity App.debug.xcconfig */,
+				B1CE6EDC0EABEAC98588AD9A /* Pods-Productivity App.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		A226398122B545DF00EFF67D = {
 			isa = PBXGroup;
 			children = (
 				A226398C22B545DF00EFF67D /* Productivity App */,
 				A226398B22B545DF00EFF67D /* Products */,
+				7AF27C66401A9DF1EAC2D842 /* Pods */,
+				18CDF7FDB4551BC6995A82F4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,9 +87,10 @@
 			isa = PBXGroup;
 			children = (
 				A226399F22B545F600EFF67D /* Controller */,
-				A22639A022B5460700EFF67D /* VIew */,
+				A22639A022B5460700EFF67D /* View */,
 				A226399422B545DF00EFF67D /* Assets.xcassets */,
 				A226399922B545DF00EFF67D /* Info.plist */,
+				A28D7A9C22C66530006E76CD /* GoogleService-Info.plist */,
 			);
 			path = "Productivity App";
 			sourceTree = "<group>";
@@ -67,17 +100,20 @@
 			children = (
 				A226398D22B545DF00EFF67D /* AppDelegate.swift */,
 				A226398F22B545DF00EFF67D /* ViewController.swift */,
+				A28D7A9422C5C241006E76CD /* RegisterViewController.swift */,
+				A28D7A9622C5C24F006E76CD /* LoginViewController.swift */,
+				A28D7A9E22C66B5B006E76CD /* ToDoListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		A22639A022B5460700EFF67D /* VIew */ = {
+		A22639A022B5460700EFF67D /* View */ = {
 			isa = PBXGroup;
 			children = (
 				A226399622B545DF00EFF67D /* LaunchScreen.storyboard */,
 				A226399122B545DF00EFF67D /* Main.storyboard */,
 			);
-			path = VIew;
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -87,9 +123,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A226399C22B545DF00EFF67D /* Build configuration list for PBXNativeTarget "Productivity App" */;
 			buildPhases = (
+				913A8A134FCADC97BEFA2848 /* [CP] Check Pods Manifest.lock */,
 				A226398622B545DF00EFF67D /* Sources */,
 				A226398722B545DF00EFF67D /* Frameworks */,
 				A226398822B545DF00EFF67D /* Resources */,
+				F3C1132F20851E637F0D26B9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -139,6 +177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A226399822B545DF00EFF67D /* LaunchScreen.storyboard in Resources */,
+				A28D7A9D22C66530006E76CD /* GoogleService-Info.plist in Resources */,
 				A226399522B545DF00EFF67D /* Assets.xcassets in Resources */,
 				A226399322B545DF00EFF67D /* Main.storyboard in Resources */,
 			);
@@ -146,12 +185,57 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		913A8A134FCADC97BEFA2848 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Productivity App-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F3C1132F20851E637F0D26B9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Productivity App/Pods-Productivity App-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Productivity App/Pods-Productivity App-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Productivity App/Pods-Productivity App-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A226398622B545DF00EFF67D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A28D7A9722C5C24F006E76CD /* LoginViewController.swift in Sources */,
+				A28D7A9522C5C241006E76CD /* RegisterViewController.swift in Sources */,
 				A226399022B545DF00EFF67D /* ViewController.swift in Sources */,
+				A28D7A9F22C66B5B006E76CD /* ToDoListViewController.swift in Sources */,
 				A226398E22B545DF00EFF67D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +380,7 @@
 		};
 		A226399D22B545DF00EFF67D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1DF29746C9F060907D832914 /* Pods-Productivity App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -314,6 +399,7 @@
 		};
 		A226399E22B545DF00EFF67D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1CE6EDC0EABEAC98588AD9A /* Pods-Productivity App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

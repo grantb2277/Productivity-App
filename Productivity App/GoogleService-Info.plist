@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1008132791715-i7qvg254sd89rkcdpobscthn0ph7l19p.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1008132791715-i7qvg254sd89rkcdpobscthn0ph7l19p</string>
+	<key>API_KEY</key>
+	<string>AIzaSyARnUIz-o-sqxLjvZ4vm7Qy3MRPO_23fsM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1008132791715</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.Grant-Brooks.Productivity-App</string>
+	<key>PROJECT_ID</key>
+	<string>productivity-app-9990c</string>
+	<key>STORAGE_BUCKET</key>
+	<string>productivity-app-9990c.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1008132791715:ios:9192d6164f0d0936</string>
+	<key>DATABASE_URL</key>
+	<string>https://productivity-app-9990c.firebaseio.com</string>
+</dict>
+</plist>
