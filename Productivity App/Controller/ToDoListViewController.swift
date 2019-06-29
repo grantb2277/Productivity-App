@@ -9,23 +9,28 @@
 import UIKit
 import Firebase
 
-class ToDoListViewController: UITableViewController {
+class ToDoListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var databaseHandle: DatabaseHandle?
     
     var ref = Database.database().reference()
+    
+    @IBOutlet weak var ItemTableView: UITableView!
     
     var itemArray: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.ItemTableView.dataSource = self
+        self.ItemTableView.delegate = self
+        
         databaseHandle = ref.child("To-do List").observe(.childAdded, with: { (snapshot) in
             
             let item = snapshot.value as? String
             if let realItem = item {
                 self.itemArray.append(realItem)
-                self.tableView.reloadData()
+                self.ItemTableView.reloadData()
             }
             
         })
@@ -34,13 +39,13 @@ class ToDoListViewController: UITableViewController {
     
     //MARK - TableView Datasouce Methods
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemArray.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Item", for: indexPath)
+        let cell = ItemTableView.dequeueReusableCell(withIdentifier: "Item", for: indexPath)
         cell.textLabel?.text = itemArray[indexPath.row]
         return cell
         
@@ -50,15 +55,15 @@ class ToDoListViewController: UITableViewController {
     //MARK - TableView Delegate Methods
     
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+        if ItemTableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
+            ItemTableView.cellForRow(at: indexPath)?.accessoryType = .none
         } else {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+            ItemTableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         }
 
-        tableView.deselectRow(at: indexPath, animated: true)
+        ItemTableView.deselectRow(at: indexPath, animated: true)
         
     }
     

@@ -30,10 +30,10 @@
             </objects>
             <point key="canvasLocation" x="-603" y="370"/>
         </scene>
-        <!--View Controller-->
+        <!--Welcome-->
         <scene sceneID="wXV-Sa-kBp">
             <objects>
-                <viewController id="3EK-WF-7V0" sceneMemberID="viewController">
+                <viewController title="Welcome" id="3EK-WF-7V0" customClass="WelcomeViewController" customModule="Productivity_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cfP-TC-xwh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -46,7 +46,7 @@
                                         <color key="backgroundColor" red="0.78999572992324829" green="0.62901240587234497" blue="0.54900205135345459" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Login"/>
                                         <connections>
-                                            <segue destination="rrt-ci-xGA" kind="show" id="lkN-c1-Hqe"/>
+                                            <segue destination="rrt-ci-xGA" kind="show" identifier="goToLogin" id="lkN-c1-Hqe"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uxb-5Y-axW">
@@ -54,7 +54,7 @@
                                         <color key="backgroundColor" red="0.5355514884" green="0.59363687040000002" blue="0.70197612050000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Register"/>
                                         <connections>
-                                            <segue destination="jHA-4C-FPI" kind="show" id="2tP-wg-JTC"/>
+                                            <segue destination="jHA-4C-FPI" kind="show" identifier="goToRegister" id="2tP-wg-JTC"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -151,60 +151,12 @@
                     <connections>
                         <outlet property="emailTextField" destination="0dX-xZ-7mp" id="Hic-WT-lB8"/>
                         <outlet property="passwordTextField" destination="eWF-JZ-rtf" id="E8d-sO-s1L"/>
-                        <segue destination="d9R-Tk-7t4" kind="show" identifier="goToToDo" id="uRw-uE-Vlu"/>
+                        <segue destination="zAT-NV-4v9" kind="presentation" identifier="goToToDo" id="MpX-8Q-vdF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fWt-oY-IcV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1553" y="794"/>
-        </scene>
-        <!--To-do-->
-        <scene sceneID="o2S-qj-JQ2">
-            <objects>
-                <viewController title="To-do" id="d9R-Tk-7t4" customClass="ToDoListViewController" customModule="Productivity_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Fom-Sy-MUj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MEC-nq-PrN">
-                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListItem" id="tzy-QO-3xV">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tzy-QO-3xV" id="mEm-7f-mOS">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nCq-Hz-H7x">
-                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.5355514884" green="0.59363687040000002" blue="0.70197612050000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <color key="barTintColor" red="0.5355514884" green="0.59363687040000002" blue="0.70197612050000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="To-do" id="2k2-h9-aH5">
-                                        <barButtonItem key="leftBarButtonItem" image="icons8-menu-30" id="Hgs-oD-aJD"/>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="EuC-mE-G6R"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" red="0.5355514884" green="0.59363687040000002" blue="0.70197612050000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <viewLayoutGuide key="safeArea" id="qkO-fo-wee"/>
-                    </view>
-                    <nil key="simulatedTopBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="s34-Tb-0Gj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2626" y="369"/>
         </scene>
         <!--Login-->
         <scene sceneID="9Ac-v4-fDX">
@@ -270,12 +222,72 @@
                     <connections>
                         <outlet property="emailTextField" destination="8vY-2h-WS4" id="LrB-dk-L5j"/>
                         <outlet property="passwordTextField" destination="X9g-vd-FpG" id="7zY-lM-hUp"/>
-                        <segue destination="d9R-Tk-7t4" kind="show" identifier="goToToDo" id="sDe-j3-LNh"/>
+                        <segue destination="zAT-NV-4v9" kind="presentation" identifier="goToToDo" id="Tzi-W9-9Fl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EEU-TZ-zX4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1552.8" y="-1.4778325123152709"/>
+        </scene>
+        <!--ToDo-->
+        <scene sceneID="cSi-Ac-q5e">
+            <objects>
+                <viewController title="ToDo" id="zAT-NV-4v9" customClass="ToDoListViewController" customModule="Productivity_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jCL-g5-Mn0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e29-af-WbW">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="0.5355514884" green="0.59363687040000002" blue="0.70197612050000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="To-Do" id="p1z-h0-9Gs">
+                                        <barButtonItem key="leftBarButtonItem" image="icons8-menu-30" id="Nbc-Ze-P6m"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="UFW-F8-D6n">
+                                            <connections>
+                                                <action selector="addItemButtonPressed:" destination="zAT-NV-4v9" id="7Cq-tq-MZ6"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hsC-3L-QNP">
+                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BXU-qG-vdE">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Item" id="B9d-eq-gRg">
+                                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="B9d-eq-gRg" id="eS7-Sw-MD5">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.5355514884" green="0.59363687040000002" blue="0.70197612050000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <viewLayoutGuide key="safeArea" id="J44-5v-fiG"/>
+                    </view>
+                    <connections>
+                        <outlet property="ItemTableView" destination="BXU-qG-vdE" id="Nrd-nN-BY9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i2I-gc-TFx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2628" y="369"/>
         </scene>
     </scenes>
     <resources>
@@ -283,7 +295,7 @@
         <image name="icons8-menu-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sDe-j3-LNh"/>
+        <segue reference="Tzi-W9-9Fl"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
