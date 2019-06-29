@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  WelcomeViewController.swift
 //  Productivity App
 //
 //  Created by Grant Brooks on 6/15/19.
@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Firebase
 
-class ViewController: UIViewController {
-
+class WelcomeViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
     }
 
 
