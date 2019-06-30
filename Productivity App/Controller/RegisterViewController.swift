@@ -8,11 +8,14 @@
 
 import UIKit
 import Firebase
+import NVActivityIndicatorView
 
 class RegisterViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    
+    var activityIndicator = NVActivityIndicatorView(frame: CGRect.init(x: 162.5, y: 218, width: 50, height: 50), type: .lineSpinFadeLoader, color: .lightGray, padding: CGFloat.init())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +29,8 @@ class RegisterViewController: UIViewController {
     
     @IBAction func registerPressed(_ sender: Any) {
         
-//        SVProgressHUD.show()
+        self.view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
         
         //TODO: Register the user
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
@@ -35,7 +39,7 @@ class RegisterViewController: UIViewController {
                 print(error!)
             } else {
                 print("Registration was successful")
-//                SVProgressHUD.dismiss()
+                self.activityIndicator.stopAnimating()
                 self.performSegue(withIdentifier: "goToToDo", sender: self)
             }
         }

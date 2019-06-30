@@ -8,12 +8,8 @@
 
 import UIKit
 import Firebase
-//import CoreMotion
 
 class ToDoListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-//    //Get rid of the Core Motion Errors
-//    var motionManager: CMMotionManager!
     
     var databaseHandle: DatabaseHandle?
     
@@ -25,10 +21,6 @@ class ToDoListViewController: UIViewController, UITableViewDataSource, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        //Get rid of the Core Motion Errors
-//        motionManager = CMMotionManager()
-//        motionManager.stopActivityUpdates
         
         self.ItemTableView.dataSource = self
         self.ItemTableView.delegate = self
