@@ -8,8 +8,12 @@
 
 import UIKit
 import Firebase
+//import CoreMotion
 
 class ToDoListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+//    //Get rid of the Core Motion Errors
+//    var motionManager: CMMotionManager!
     
     var databaseHandle: DatabaseHandle?
     
@@ -21,6 +25,10 @@ class ToDoListViewController: UIViewController, UITableViewDataSource, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        //Get rid of the Core Motion Errors
+//        motionManager = CMMotionManager()
+//        motionManager.stopActivityUpdates
         
         self.ItemTableView.dataSource = self
         self.ItemTableView.delegate = self
@@ -67,16 +75,26 @@ class ToDoListViewController: UIViewController, UITableViewDataSource, UITableVi
         
     }
     
+    //MARK - Additonal Features
     
     @IBAction func addItemButtonPressed(_ sender: Any) {
         
         var textField = UITextField()
         
         let alert = UIAlertController(title: "Add New To-do List Item", message: "", preferredStyle: .alert)
+        
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             //what will happen once the user clicks the Add Item button on our UIAlert
             
-            self.ref.child("To-do List").childByAutoId().setValue(textField.text!)
+            self.ref.child("To-do List").child(textField.text!).setValue(textField.text!)
+            
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .default) { (action) in
+            //what will happen once the user clicks the Cancel button on our UIAlert
+            alert.dismiss(animated: true, completion: {
+                
+            })
             
         }
         
@@ -87,8 +105,25 @@ class ToDoListViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         
         alert.addAction(action)
+        alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
         
     }
+    
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+            self.ref.child("To-do List").child(itemArray[indexPath.row]).removeValue()
+            self.itemArray.remove(at: indexPath.row)
+            self.ItemTableView.reloadData()
+        }
+    }
+    
+    
     
 }
