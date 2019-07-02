@@ -32,6 +32,8 @@ class RegisterViewController: UIViewController {
         self.view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         
+        passwordTextField.passwordRules = UITextInputPasswordRules(descriptor: "required: upper; required: lower; required: digit; max-consecutive: 2; minlength: 8;")
+        
         //TODO: Register the user
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             
@@ -40,16 +42,10 @@ class RegisterViewController: UIViewController {
             } else {
                 print("Registration was successful")
                 self.activityIndicator.stopAnimating()
-                self.performSegue(withIdentifier: "goToToDo", sender: self)
+                self.performSegue(withIdentifier: "startAtToDo", sender: self)
             }
         }
         
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToToDo" {
-            
-        }
     }
     
     

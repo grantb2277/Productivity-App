@@ -43,15 +43,13 @@ class ToDoListViewController: UIViewController, UITableViewDataSource, UITableVi
         let menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "SideMenu") as! UISideMenuNavigationController
         SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
         
-        // (Optional) Enable gestures. The left and/or right menus must be set up above for these to work.
-        // Note that these continue to work on the Navigation Controller independent of the view controller it displays!
-        
-//        SideMenuManager.default.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
-//        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
-        
         // (Optional) Prevent status bar area from turning black when menu appears:
         SideMenuManager.default.menuFadeStatusBar = false
         
+    }
+    
+    @IBAction func menuButtonPressed(_ sender: Any) {
+        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
     //MARK - TableView Datasouce Methods
@@ -71,18 +69,19 @@ class ToDoListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     //MARK - TableView Delegate Methods
     
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        if ItemTableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
-            ItemTableView.cellForRow(at: indexPath)?.accessoryType = .none
-        } else {
-            ItemTableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        }
-
-        ItemTableView.deselectRow(at: indexPath, animated: true)
-        
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+            self.ref.child("To-do List").child(itemArray[indexPath.row]).removeValue()
+            self.itemArray.remove(at: indexPath.row)
+            self.ItemTableView.reloadData()
+        }
+    }
+    
     
     //MARK - Additonal Features
     
@@ -118,24 +117,5 @@ class ToDoListViewController: UIViewController, UITableViewDataSource, UITableVi
         present(alert, animated: true, completion: nil)
         
     }
-    
-    @IBAction func menuButtonPressed(_ sender: Any) {
-        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
-            // handle delete (by removing the data from your array and updating the tableview)
-            self.ref.child("To-do List").child(itemArray[indexPath.row]).removeValue()
-            self.itemArray.remove(at: indexPath.row)
-            self.ItemTableView.reloadData()
-        }
-    }
-    
-    
     
 }

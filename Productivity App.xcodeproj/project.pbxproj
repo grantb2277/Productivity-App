@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		32C296DFA4BE5EAB526BB747 /* Pods_Productivity_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5829B5130E3A13DF6CFC7FF6 /* Pods_Productivity_App.framework */; };
+		A21B8CFE22CA459300711B32 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21B8CFD22CA459300711B32 /* MenuViewController.swift */; };
+		A21B8D0122CA632400711B32 /* MenuItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21B8D0022CA632400711B32 /* MenuItemCell.xib */; };
+		A21B8D0322CA647D00711B32 /* CustomMenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21B8D0222CA647D00711B32 /* CustomMenuItemCell.swift */; };
+		A21B8D0522CA94F900711B32 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21B8D0422CA94F900711B32 /* CalendarViewController.swift */; };
 		A226398E22B545DF00EFF67D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A226398D22B545DF00EFF67D /* AppDelegate.swift */; };
 		A226399022B545DF00EFF67D /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A226398F22B545DF00EFF67D /* WelcomeViewController.swift */; };
 		A226399322B545DF00EFF67D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A226399122B545DF00EFF67D /* Main.storyboard */; };
@@ -22,6 +26,10 @@
 /* Begin PBXFileReference section */
 		1DF29746C9F060907D832914 /* Pods-Productivity App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Productivity App.debug.xcconfig"; path = "Target Support Files/Pods-Productivity App/Pods-Productivity App.debug.xcconfig"; sourceTree = "<group>"; };
 		5829B5130E3A13DF6CFC7FF6 /* Pods_Productivity_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Productivity_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A21B8CFD22CA459300711B32 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		A21B8D0022CA632400711B32 /* MenuItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemCell.xib; sourceTree = "<group>"; };
+		A21B8D0222CA647D00711B32 /* CustomMenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenuItemCell.swift; sourceTree = "<group>"; };
+		A21B8D0422CA94F900711B32 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		A226398A22B545DF00EFF67D /* Productivity App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Productivity App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A226398D22B545DF00EFF67D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A226398F22B545DF00EFF67D /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +73,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A21B8CFF22CA62C300711B32 /* Custom Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A21B8D0022CA632400711B32 /* MenuItemCell.xib */,
+				A21B8D0222CA647D00711B32 /* CustomMenuItemCell.swift */,
+			);
+			path = "Custom Cell";
+			sourceTree = "<group>";
+		};
 		A226398122B545DF00EFF67D = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +120,8 @@
 				A28D7A9422C5C241006E76CD /* RegisterViewController.swift */,
 				A28D7A9622C5C24F006E76CD /* LoginViewController.swift */,
 				A28D7A9E22C66B5B006E76CD /* ToDoListViewController.swift */,
+				A21B8CFD22CA459300711B32 /* MenuViewController.swift */,
+				A21B8D0422CA94F900711B32 /* CalendarViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -110,6 +129,7 @@
 		A22639A022B5460700EFF67D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A21B8CFF22CA62C300711B32 /* Custom Cell */,
 				A226399622B545DF00EFF67D /* LaunchScreen.storyboard */,
 				A226399122B545DF00EFF67D /* Main.storyboard */,
 			);
@@ -177,6 +197,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A226399822B545DF00EFF67D /* LaunchScreen.storyboard in Resources */,
+				A21B8D0122CA632400711B32 /* MenuItemCell.xib in Resources */,
 				A28D7A9D22C66530006E76CD /* GoogleService-Info.plist in Resources */,
 				A226399522B545DF00EFF67D /* Assets.xcassets in Resources */,
 				A226399322B545DF00EFF67D /* Main.storyboard in Resources */,
@@ -232,7 +253,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A21B8D0522CA94F900711B32 /* CalendarViewController.swift in Sources */,
 				A28D7A9722C5C24F006E76CD /* LoginViewController.swift in Sources */,
+				A21B8CFE22CA459300711B32 /* MenuViewController.swift in Sources */,
+				A21B8D0322CA647D00711B32 /* CustomMenuItemCell.swift in Sources */,
 				A28D7A9522C5C241006E76CD /* RegisterViewController.swift in Sources */,
 				A226399022B545DF00EFF67D /* WelcomeViewController.swift in Sources */,
 				A28D7A9F22C66B5B006E76CD /* ToDoListViewController.swift in Sources */,

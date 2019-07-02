@@ -39,7 +39,7 @@ class LoginViewController: UIViewController {
             } else {
                 print("Login was successful")
                 self.activityIndicator.stopAnimating()
-                self.performSegue(withIdentifier: "goToToDo", sender: self)
+                self.performSegue(withIdentifier: "startAtToDo", sender: self)
             }
         }
         
