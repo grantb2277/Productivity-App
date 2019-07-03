@@ -23,6 +23,8 @@ class ToDoListViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.isNavigationBarHidden = true
+        
         self.ItemTableView.dataSource = self
         self.ItemTableView.delegate = self
         

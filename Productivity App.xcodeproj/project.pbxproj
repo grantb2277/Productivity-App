@@ -12,6 +12,8 @@
 		A21B8D0122CA632400711B32 /* MenuItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21B8D0022CA632400711B32 /* MenuItemCell.xib */; };
 		A21B8D0322CA647D00711B32 /* CustomMenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21B8D0222CA647D00711B32 /* CustomMenuItemCell.swift */; };
 		A21B8D0522CA94F900711B32 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21B8D0422CA94F900711B32 /* CalendarViewController.swift */; };
+		A21B8D0722CC046A00711B32 /* PlannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21B8D0622CC046A00711B32 /* PlannerViewController.swift */; };
+		A21B8D0922CC06F200711B32 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21B8D0822CC06F200711B32 /* SettingsViewController.swift */; };
 		A226398E22B545DF00EFF67D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A226398D22B545DF00EFF67D /* AppDelegate.swift */; };
 		A226399022B545DF00EFF67D /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A226398F22B545DF00EFF67D /* WelcomeViewController.swift */; };
 		A226399322B545DF00EFF67D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A226399122B545DF00EFF67D /* Main.storyboard */; };
@@ -30,6 +32,8 @@
 		A21B8D0022CA632400711B32 /* MenuItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemCell.xib; sourceTree = "<group>"; };
 		A21B8D0222CA647D00711B32 /* CustomMenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenuItemCell.swift; sourceTree = "<group>"; };
 		A21B8D0422CA94F900711B32 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		A21B8D0622CC046A00711B32 /* PlannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerViewController.swift; sourceTree = "<group>"; };
+		A21B8D0822CC06F200711B32 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A226398A22B545DF00EFF67D /* Productivity App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Productivity App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A226398D22B545DF00EFF67D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A226398F22B545DF00EFF67D /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +126,8 @@
 				A28D7A9E22C66B5B006E76CD /* ToDoListViewController.swift */,
 				A21B8CFD22CA459300711B32 /* MenuViewController.swift */,
 				A21B8D0422CA94F900711B32 /* CalendarViewController.swift */,
+				A21B8D0622CC046A00711B32 /* PlannerViewController.swift */,
+				A21B8D0822CC06F200711B32 /* SettingsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -253,8 +259,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A21B8D0722CC046A00711B32 /* PlannerViewController.swift in Sources */,
 				A21B8D0522CA94F900711B32 /* CalendarViewController.swift in Sources */,
 				A28D7A9722C5C24F006E76CD /* LoginViewController.swift in Sources */,
+				A21B8D0922CC06F200711B32 /* SettingsViewController.swift in Sources */,
 				A21B8CFE22CA459300711B32 /* MenuViewController.swift in Sources */,
 				A21B8D0322CA647D00711B32 /* CustomMenuItemCell.swift in Sources */,
 				A28D7A9522C5C241006E76CD /* RegisterViewController.swift in Sources */,

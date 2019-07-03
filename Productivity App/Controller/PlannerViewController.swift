@@ -1,8 +1,8 @@
 //
-//  CalendarViewController.swift
+//  PlannerViewController.swift
 //  Productivity App
 //
-//  Created by Grant Brooks on 7/1/19.
+//  Created by Grant Brooks on 7/2/19.
 //  Copyright © 2019 Grant Brooks. All rights reserved.
 //
 
@@ -10,13 +10,13 @@ import UIKit
 import Firebase
 import SideMenu
 
-class CalendarViewController: UIViewController {
+class PlannerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         navigationController?.isNavigationBarHidden = true
+        
         
         // Define the menus
         //        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: MenuController)
@@ -28,11 +28,11 @@ class CalendarViewController: UIViewController {
         // (Optional) Prevent status bar area from turning black when menu appears:
         SideMenuManager.default.menuFadeStatusBar = false
         
+        
     }
+    
     
     @IBAction func menuButtonPressed(_ sender: Any) {
         present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
-    
-
 }
