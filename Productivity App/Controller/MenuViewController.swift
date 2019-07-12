@@ -46,12 +46,16 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         print("You pressed row \(indexPath.row)")
         
         if (indexPath.row == 0) {
+            self.dismiss(animated: true, completion: nil)
             performSegue(withIdentifier: "goToToDo", sender: self)
         } else if (indexPath.row == 1) {
+            self.dismiss(animated: true, completion: nil)
             performSegue(withIdentifier: "goToCalendar", sender: self)
         } else if (indexPath.row == 2) {
+            self.dismiss(animated: true, completion: nil)
             performSegue(withIdentifier: "goToPlanner", sender: self)
         } else {
+            self.dismiss(animated: true, completion: nil)
             performSegue(withIdentifier: "goToSettings", sender: self)
         }
         
