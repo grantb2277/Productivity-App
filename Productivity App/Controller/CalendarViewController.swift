@@ -11,13 +11,25 @@ import Firebase
 import SideMenu
 import FSCalendar
 
-class CalendarViewController:  UIViewController, UITableViewDataSource, UITableViewDelegate, FSCalendarDataSource, FSCalendarDelegate, UIGestureRecognizerDelegate{
+struct dailyEventsStruct {
+    var date: String
+    var events: [String]
+}
+
+class CalendarViewController:  UIViewController, UITableViewDataSource, UITableViewDelegate, FSCalendarDataSource, FSCalendarDelegate, UIGestureRecognizerDelegate {
     
+    var databaseHandle: DatabaseHandle?
+    
+    var ref = Database.database().reference()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var calendar: FSCalendar!
     
     @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
+    
+    var selectedDate: Date = Date()
+    
+    var dailyEvents: [dailyEventsStruct] = []
     
     fileprivate lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -29,6 +41,18 @@ class CalendarViewController:  UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         
         navigationController?.isNavigationBarHidden = true
+        
+        
+        databaseHandle = ref.child("Calendar").observe(.childAdded, with: { (snapshot) in
+            
+            let item = snapshot.value as? dailyEventsStruct
+            if let realItem = item {
+                self.dailyEvents.append(realItem)
+                self.tableView.reloadData()
+            }
+            
+        })
+        
         
         // Define the menus
         //        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: MenuController)
@@ -100,6 +124,8 @@ class CalendarViewController:  UIViewController, UITableViewDataSource, UITableV
         if monthPosition == .next || monthPosition == .previous {
             calendar.setCurrentPage(date, animated: true)
         }
+        
+        selectedDate = date
 
     }
     
@@ -114,6 +140,53 @@ class CalendarViewController:  UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
+    }
+    
+    @IBAction func addItemButtonPressed(_ sender: Any) {
+        
+        var textField = UITextField()
+        
+        let alert = UIAlertController(title: "Add New Event", message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Add Event", style: .default) { (action) in
+            //what will happen once the user clicks the Add Item button on our UIAlert
+            
+            let dateAsString = self.removeSlashFromDate(date: self.selectedDate)
+            self.ref.child("Calendar").setValue([dateAsString : textField.text!])
+            
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .default) { (action) in
+            //what will happen once the user clicks the Cancel button on our UIAlert
+            alert.dismiss(animated: true, completion: {
+                
+            })
+            
+        }
+        
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Create new event"
+            textField = alertTextField
+        }
+        
+        alert.addAction(action)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    func removeSlashFromDate(date: Date) -> String {
+        
+        var newDate: String = ""
+        let oldDate = dateFormatter.string(from: date)
+        
+        for char in oldDate {
+            if (char != "/") {
+                newDate = newDate + String(char)
+            }
+        }
+        
+        return newDate
     }
     
 }
