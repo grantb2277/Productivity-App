@@ -19,6 +19,7 @@ class ToDoListViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var ItemTableView: UITableView!
     
     var itemArray: [String] = []
+    var keyArray: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,7 @@ class ToDoListViewController: UIViewController, UITableViewDataSource, UITableVi
             let item = snapshot.value as? String
             if let realItem = item {
                 self.itemArray.append(realItem)
+                self.keyArray.append(snapshot.key)
                 self.ItemTableView.reloadData()
             }
             
@@ -78,8 +80,9 @@ class ToDoListViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
-            self.ref.child("To-do List").child(itemArray[indexPath.row]).removeValue()
+            self.ref.child("To-do List").child(keyArray[indexPath.row]).removeValue()
             self.itemArray.remove(at: indexPath.row)
+            self.keyArray.remove(at: indexPath.row)
             self.ItemTableView.reloadData()
         }
     }
@@ -107,9 +110,17 @@ class ToDoListViewController: UIViewController, UITableViewDataSource, UITableVi
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             //what will happen once the user clicks the Add Item button on our UIAlert
             
-            self.ref.child("To-do List").child(textField.text!).setValue(textField.text!)
-            
+            let newValue = self.ref.child("To-do List").childByAutoId()
+            newValue.setValue(textField.text!)
+            self.keyArray.append(newValue.key!)
+            print(self.keyArray)
         }
+        
+//        var reference  = FIRDatabase.database().reference().child("Posts").childByAutoId()
+//
+//        reference.setValue(postInfo)
+//        let childautoID = reference.key
+//        print(childautoID)
         
         let cancel = UIAlertAction(title: "Cancel", style: .default) { (action) in
             //what will happen once the user clicks the Cancel button on our UIAlert
@@ -122,7 +133,6 @@ class ToDoListViewController: UIViewController, UITableViewDataSource, UITableVi
         alert.addTextField { (alertTextField) in
             alertTextField.placeholder = "Create new item"
             textField = alertTextField
-            print("Now")
         }
         
         alert.addAction(action)
