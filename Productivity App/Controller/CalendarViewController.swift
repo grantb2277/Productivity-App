@@ -11,11 +11,6 @@ import Firebase
 import SideMenu
 import FSCalendar
 
-struct dailyEventsStruct {
-    var date: String
-    var events: [String]
-}
-
 class CalendarViewController:  UIViewController, UITableViewDataSource, UITableViewDelegate, FSCalendarDataSource, FSCalendarDelegate, UIGestureRecognizerDelegate {
     
     var databaseHandle: DatabaseHandle?
@@ -27,13 +22,13 @@ class CalendarViewController:  UIViewController, UITableViewDataSource, UITableV
     
     @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
     
+    var dailyEvents: [String : [String]] = [:]
+    
     var selectedDate: Date = Date()
-    
-    var dailyEvents: [dailyEventsStruct] = []
-    
+
     fileprivate lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM/dd//yyyy"
+        formatter.dateFormat = "MMddyyyy"
         return formatter
     }()
     
@@ -42,17 +37,34 @@ class CalendarViewController:  UIViewController, UITableViewDataSource, UITableV
         
         navigationController?.isNavigationBarHidden = true
         
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
+//        let date = snapshot.key
+//        let dict = snapshot.value as? NSDictionary
+//        var eventArray: [String] = []
+//        if let dictionary = dict {
+//            for (_, event) in dictionary {
+//                let newEvent = event as? String
+//                eventArray.append(newEvent!)
+//            }
+//        }
+//        self.dailyEvents[date] = eventArray
+//        self.tableView.reloadData()
         
         databaseHandle = ref.child("Calendar").observe(.childAdded, with: { (snapshot) in
             
-            let item = snapshot.value as? dailyEventsStruct
-            if let realItem = item {
-                self.dailyEvents.append(realItem)
-                self.tableView.reloadData()
+            let date = snapshot.key
+            var eventArray: [String] = []
+            for snap in snapshot.children {
+                let event = snap as! DataSnapshot
+                let newEvent = event.value as? String
+                eventArray.append(newEvent!)
             }
+            self.dailyEvents[date] = eventArray
+            self.tableView.reloadData()
             
         })
-        
         
         // Define the menus
         //        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: MenuController)
@@ -81,6 +93,7 @@ class CalendarViewController:  UIViewController, UITableViewDataSource, UITableV
         
         // For UITest
         self.calendar.accessibilityIdentifier = "calendar"
+        
     }
     
     deinit {
@@ -118,14 +131,15 @@ class CalendarViewController:  UIViewController, UITableViewDataSource, UITableV
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         
+        selectedDate = date
         print("did select date \(self.dateFormatter.string(from: date))")
         let selectedDates = calendar.selectedDates.map({self.dateFormatter.string(from: $0)})
         print("selected dates is \(selectedDates)")
         if monthPosition == .next || monthPosition == .previous {
             calendar.setCurrentPage(date, animated: true)
         }
-        
         selectedDate = date
+        self.tableView.reloadData()
 
     }
     
@@ -134,13 +148,51 @@ class CalendarViewController:  UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EventItem")!
+        
+        let formatDate = self.dateFormatter.string(from: selectedDate)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EventItem", for: indexPath)
+//        cell.textLabel?.text = dateArray[indexPath.row]
+        cell.textLabel?.text = dailyEvents[formatDate]![indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+//        return dateArray.count
+        let formatDate = self.dateFormatter.string(from: selectedDate)
+        if let dailyEvents = dailyEvents[formatDate] {
+            return dailyEvents.count
+        } else {
+            return 0
+        }
     }
+    
+    //MARK - TableView Delegate Methods
+    
+//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
+//
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if (editingStyle == .delete) {
+//            // handle delete (by removing the data from your array and updating the tableview)
+//            let formatDate = self.dateFormatter.string(from: selectedDate)
+//            self.ref.child("Calendar").child(formatDate).child(itemArray[indexPath.row]).removeValue()
+//            self.itemArray.remove(at: indexPath.row)
+//            self.ItemTableView.reloadData()
+//        }
+//    }
+//
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
+//            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+//        } else {
+//            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+//        }
+//
+//        tableView.deselectRow(at: indexPath, animated: true)
+//    }
     
     @IBAction func addItemButtonPressed(_ sender: Any) {
         
@@ -151,8 +203,8 @@ class CalendarViewController:  UIViewController, UITableViewDataSource, UITableV
         let action = UIAlertAction(title: "Add Event", style: .default) { (action) in
             //what will happen once the user clicks the Add Item button on our UIAlert
             
-            let dateAsString = self.removeSlashFromDate(date: self.selectedDate)
-            self.ref.child("Calendar").setValue([dateAsString : textField.text!])
+            let dateAsString = self.dateFormatter.string(from: self.selectedDate)
+            self.ref.child("Calendar").child(dateAsString).child(textField.text!).setValue(textField.text!)
             
         }
         
@@ -175,18 +227,18 @@ class CalendarViewController:  UIViewController, UITableViewDataSource, UITableV
         
     }
     
-    func removeSlashFromDate(date: Date) -> String {
-        
-        var newDate: String = ""
-        let oldDate = dateFormatter.string(from: date)
-        
-        for char in oldDate {
-            if (char != "/") {
-                newDate = newDate + String(char)
-            }
-        }
-        
-        return newDate
-    }
+//    func removeSlashFromDate(date: Date) -> String {
+//
+//        var newDate: String = ""
+//        let oldDate = dateFormatter.string(from: date)
+//
+//        for char in oldDate {
+//            if (char != "/") {
+//                newDate = newDate + String(char)
+//            }
+//        }
+//
+//        return newDate
+//    }
     
 }
