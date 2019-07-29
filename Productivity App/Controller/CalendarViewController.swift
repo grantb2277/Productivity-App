@@ -11,6 +11,9 @@ import Firebase
 import SideMenu
 import FSCalendar
 
+var dailyEvents: [String : [String]] = [:]
+var dailyKeys: [String : [String]] = [:]
+
 class CalendarViewController:  UIViewController, UITableViewDataSource, UITableViewDelegate, FSCalendarDataSource, FSCalendarDelegate, UIGestureRecognizerDelegate {
     
     var databaseHandle: DatabaseHandle?
@@ -22,9 +25,6 @@ class CalendarViewController:  UIViewController, UITableViewDataSource, UITableV
     
     @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
     
-    var dailyEvents: [String : [String]] = [:]
-    var dailyKeys: [String : [String]] = [:]
-    
     var selectedDate: Date = Date()
 
     fileprivate lazy var dateFormatter: DateFormatter = {
@@ -35,6 +35,8 @@ class CalendarViewController:  UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTable), name: NSNotification.Name(rawValue: "reloadTable"), object: nil)
         
         navigationController?.isNavigationBarHidden = true
         
@@ -53,22 +55,7 @@ class CalendarViewController:  UIViewController, UITableViewDataSource, UITableV
 //        self.dailyEvents[date] = eventArray
 //        self.tableView.reloadData()
         
-        databaseHandle = ref.child("Calendar").observe(.childAdded, with: { (snapshot) in
-            
-            let date = snapshot.key
-            var eventKey: [String] = []
-            var eventArray: [String] = []
-            for snap in snapshot.children {
-                let event = snap as! DataSnapshot
-                let newEvent = event.value as? String
-                eventArray.append(newEvent!)
-                eventKey.append(event.key)
-            }
-            self.dailyEvents[date] = eventArray
-            self.dailyKeys[date] = eventKey
-            self.tableView.reloadData()
-            
-        })
+        getDataFromFirebase()
         
         // Define the menus
         //        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: MenuController)
@@ -102,6 +89,31 @@ class CalendarViewController:  UIViewController, UITableViewDataSource, UITableV
     
     deinit {
         print("\(#function)")
+    }
+    
+    @objc func reloadTable(notification: NSNotification){
+        //load data here
+        getDataFromFirebase()
+        self.tableView.reloadData()
+    }
+    
+    func getDataFromFirebase() {
+        databaseHandle = ref.child("Calendar").observe(.childAdded, with: { (snapshot) in
+            
+            let date = snapshot.key
+            var eventKey: [String] = []
+            var eventArray: [String] = []
+            for snap in snapshot.children {
+                let event = snap as! DataSnapshot
+                let newEvent = event.value as? String
+                eventArray.append(newEvent!)
+                eventKey.append(event.key)
+            }
+            dailyEvents[date] = eventArray
+            dailyKeys[date] = eventKey
+            self.tableView.reloadData()
+            
+        })
     }
     
     @IBAction func menuButtonPressed(_ sender: Any) {
@@ -188,8 +200,8 @@ class CalendarViewController:  UIViewController, UITableViewDataSource, UITableV
                 dateEventArray = []
             }
             self.ref.child("Calendar").child(formatDate).child(dateEventArray[indexPath.row]).removeValue()
-            self.dailyKeys[formatDate]!.remove(at: indexPath.row)
-            self.dailyEvents[formatDate]!.remove(at: indexPath.row)
+            dailyKeys[formatDate]!.remove(at: indexPath.row)
+            dailyEvents[formatDate]!.remove(at: indexPath.row)
             self.tableView.reloadData()
         }
     }
@@ -204,43 +216,43 @@ class CalendarViewController:  UIViewController, UITableViewDataSource, UITableV
 
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
-    @IBAction func addItemButtonPressed(_ sender: Any) {
-        
-        var textField = UITextField()
-        
-        let alert = UIAlertController(title: "Add New Event", message: "", preferredStyle: .alert)
-        
-        let action = UIAlertAction(title: "Add Event", style: .default) { (action) in
-            //what will happen once the user clicks the Add Item button on our UIAlert
-            
+
+//    @IBAction func addItemButtonPressed(_ sender: Any) {
+//
+//        var textField = UITextField()
+//
+//        let alert = UIAlertController(title: "Add New Event", message: "", preferredStyle: .alert)
+//
+//        let action = UIAlertAction(title: "Add Event", style: .default) { (action) in
+//            //what will happen once the user clicks the Add Item button on our UIAlert
+//
+////            let dateAsString = self.dateFormatter.string(from: self.selectedDate)
+////            self.ref.child("Calendar").child(dateAsString).child(textField.text!).setValue(textField.text!)
+//
 //            let dateAsString = self.dateFormatter.string(from: self.selectedDate)
-//            self.ref.child("Calendar").child(dateAsString).child(textField.text!).setValue(textField.text!)
-            
-            let dateAsString = self.dateFormatter.string(from: self.selectedDate)
-            let newEvent = self.ref.child("Calendar").child(dateAsString).childByAutoId()
-            newEvent.setValue(textField.text!)
-            self.dailyKeys[dateAsString]?.append(newEvent.key!)
-            
-        }
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .default) { (action) in
-            //what will happen once the user clicks the Cancel button on our UIAlert
-            alert.dismiss(animated: true, completion: {
-                
-            })
-            
-        }
-        
-        alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "Create new event"
-            textField = alertTextField
-        }
-        
-        alert.addAction(action)
-        alert.addAction(cancel)
-        present(alert, animated: true, completion: nil)
-        
-    }
+//            let newEvent = self.ref.child("Calendar").child(dateAsString).childByAutoId()
+//            newEvent.setValue(textField.text!)
+//            dailyKeys[dateAsString]?.append(newEvent.key!)
+//
+//        }
+//
+//        let cancel = UIAlertAction(title: "Cancel", style: .default) { (action) in
+//            //what will happen once the user clicks the Cancel button on our UIAlert
+//            alert.dismiss(animated: true, completion: {
+//
+//            })
+//
+//        }
+//
+//        alert.addTextField { (alertTextField) in
+//            alertTextField.placeholder = "Create new event"
+//            textField = alertTextField
+//        }
+//
+//        alert.addAction(action)
+//        alert.addAction(cancel)
+//        present(alert, animated: true, completion: nil)
+//
+//    }
     
 }

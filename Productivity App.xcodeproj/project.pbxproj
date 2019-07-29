@@ -19,6 +19,7 @@
 		A226399322B545DF00EFF67D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A226399122B545DF00EFF67D /* Main.storyboard */; };
 		A226399522B545DF00EFF67D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A226399422B545DF00EFF67D /* Assets.xcassets */; };
 		A226399822B545DF00EFF67D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A226399622B545DF00EFF67D /* LaunchScreen.storyboard */; };
+		A22A002122EE51F10014C8A0 /* AddNewEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22A002022EE51F10014C8A0 /* AddNewEventController.swift */; };
 		A28D7A9522C5C241006E76CD /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28D7A9422C5C241006E76CD /* RegisterViewController.swift */; };
 		A28D7A9722C5C24F006E76CD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28D7A9622C5C24F006E76CD /* LoginViewController.swift */; };
 		A28D7A9D22C66530006E76CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A28D7A9C22C66530006E76CD /* GoogleService-Info.plist */; };
@@ -43,6 +44,7 @@
 		A226399422B545DF00EFF67D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A226399722B545DF00EFF67D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A226399922B545DF00EFF67D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A22A002022EE51F10014C8A0 /* AddNewEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewEventController.swift; sourceTree = "<group>"; };
 		A28D7A9422C5C241006E76CD /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		A28D7A9622C5C24F006E76CD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A28D7A9C22C66530006E76CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				A21B8D0422CA94F900711B32 /* CalendarViewController.swift */,
 				A21B8D0622CC046A00711B32 /* PlannerViewController.swift */,
 				A21B8D0822CC06F200711B32 /* SettingsViewController.swift */,
+				A22A002022EE51F10014C8A0 /* AddNewEventController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				A226399022B545DF00EFF67D /* WelcomeViewController.swift in Sources */,
 				A28D7A9F22C66B5B006E76CD /* ToDoListViewController.swift in Sources */,
 				A226398E22B545DF00EFF67D /* AppDelegate.swift in Sources */,
+				A22A002122EE51F10014C8A0 /* AddNewEventController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
