@@ -14,13 +14,19 @@ class PlannerViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var tableView: UITableView!
     var sections: [String] = ["This Week", "Next Week", "Upcoming"]
-    var weeklyEvents: [String] = []
-    var upcomingEvents: [String] = []
+    var weeklyEvents: [String] = ["Weekly"]
+    var nextWeekEvents: [String] = ["Next Week"]
+    var upcomingEvents: [String] = ["Upcoming"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        
         navigationController?.isNavigationBarHidden = true
+        
+        tableView.register(UINib(nibName: "PlannerCell", bundle: nil), forCellReuseIdentifier: "customPlannerCell")
         
         // Define the menus
         //        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: MenuController)
@@ -39,44 +45,37 @@ class PlannerViewController: UIViewController, UITableViewDelegate, UITableViewD
         return sections.count
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.sections[section]
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch (section) {
         case 0:
-            return 0
+            return weeklyEvents.count
         case 1:
-            return 0
+            return nextWeekEvents.count
         default:
-            return 0
+            return upcomingEvents.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customPlannerCell", for: indexPath) as! CustomPlannerCell
+        switch indexPath.section {
+        case 0:
+            cell.cellText.text = weeklyEvents[indexPath.row]
+            cell.colorCode.backgroundColor = .black
+        case 1:
+            cell.cellText.text = nextWeekEvents[indexPath.row]
+            cell.colorCode.backgroundColor = .blue
+        default:
+            cell.cellText.text = upcomingEvents[indexPath.row]
+            cell.colorCode.backgroundColor = .green
+        }
+        
+        return cell
     }
-    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        switch (section) {
-//        case 0:
-//            return itemsA.count
-//        case 1:
-//            return itemsB.count
-//        default:
-//            return itemsC.count
-//        }
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "StoreCell") as! UITableViewCell
-//        switch (indexPath.section) {
-//        case 0:
-//        //Access itemsA[indexPath.row]
-//        case 1:
-//        //Access itemsB[indexPath.row]
-//        default:
-//            //Access itemsC[indexPath.row]
-//        }
-//        return cell
-//    }
     
     @IBAction func menuButtonPressed(_ sender: Any) {
         present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
